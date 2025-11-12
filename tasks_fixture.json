@@ -1,0 +1,167 @@
+[
+  {
+    "model": "tasks.category",
+    "pk": 1,
+    "fields": {
+      "name": "Development"
+    }
+  },
+  {
+    "model": "tasks.category",
+    "pk": 2,
+    "fields": {
+      "name": "Testing"
+    }
+  },
+  {
+    "model": "tasks.category",
+    "pk": 3,
+    "fields": {
+      "name": "Documentation"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+      "title": "Create Django models",
+      "description": "Create Task, SubTask, and Category models in the project.",
+      "status": "New",
+      "deadline": "2025-11-12T15:20:00",
+      "created_at": "2025-11-12T15:00:00",
+      "categories": [1]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "title": "Configure admin panel",
+      "description": "Register models and configure display in the admin panel.",
+      "status": "In progress",
+      "deadline": "2025-11-12T15:40:00",
+      "created_at": "2025-11-12T15:05:00",
+      "categories": [3]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+      "title": "Populate data",
+      "description": "Add tasks, subtasks, and categories through the admin panel.",
+      "status": "Pending",
+      "deadline": "2025-11-12T16:00:00",
+      "created_at": "2025-11-12T15:10:00",
+      "categories": [2]
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 1,
+    "fields": {
+      "title": "Create Task class with required fields",
+      "description": "Define all fields for Task model.",
+      "status": "New",
+      "deadline": "2025-11-12T15:05:00",
+      "created_at": "2025-11-12T15:00:00",
+      "task": 1
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 2,
+    "fields": {
+      "title": "Create SubTask class with required fields",
+      "description": "Define all fields for SubTask model.",
+      "status": "New",
+      "deadline": "2025-11-12T15:10:00",
+      "created_at": "2025-11-12T15:02:00",
+      "task": 1
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 3,
+    "fields": {
+      "title": "Create Category class and check relations",
+      "description": "Define Category model and verify model relations.",
+      "status": "New",
+      "deadline": "2025-11-12T15:15:00",
+      "created_at": "2025-11-12T15:03:00",
+      "task": 1
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 4,
+    "fields": {
+      "title": "Register models in admin.py",
+      "description": "Add all models to Django admin panel.",
+      "status": "In progress",
+      "deadline": "2025-11-12T15:25:00",
+      "created_at": "2025-11-12T15:05:00",
+      "task": 2
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 5,
+    "fields": {
+      "title": "Configure list_display and search_fields",
+      "description": "Set up list_display and search_fields for admin panel.",
+      "status": "In progress",
+      "deadline": "2025-11-12T15:30:00",
+      "created_at": "2025-11-12T15:06:00",
+      "task": 2
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 6,
+    "fields": {
+      "title": "Check admin panel display",
+      "description": "Verify that admin panel shows all models correctly.",
+      "status": "In progress",
+      "deadline": "2025-11-12T15:35:00",
+      "created_at": "2025-11-12T15:07:00",
+      "task": 2
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 7,
+    "fields": {
+      "title": "Create superuser",
+      "description": "Run createsuperuser to access admin panel.",
+      "status": "Pending",
+      "deadline": "2025-11-12T15:45:00",
+      "created_at": "2025-11-12T15:10:00",
+      "task": 3
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 8,
+    "fields": {
+      "title": "Add tasks through admin panel",
+      "description": "Manually add Task objects via admin.",
+      "status": "Pending",
+      "deadline": "2025-11-12T15:50:00",
+      "created_at": "2025-11-12T15:11:00",
+      "task": 3
+    }
+  },
+  {
+    "model": "tasks.subtask",
+    "pk": 9,
+    "fields": {
+      "title": "Add subtasks and categories",
+      "description": "Manually add SubTask and Category objects via admin.",
+      "status": "Pending",
+      "deadline": "2025-11-12T16:00:00",
+      "created_at": "2025-11-12T15:12:00",
+      "task": 3
+    }
+  }
+]
