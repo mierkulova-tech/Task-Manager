@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <h1>{{ post.title }}</h1>
+        <p style="font-size: 0.95rem; color: #777; margin-top: 0.5rem;">
+            {{ post.date|date:"d M Y" }}
+        </p>
+        <p style="margin: 1.25rem 0; color: #555; line-height: 1.7;">
+            {{ post.body|linebreaks }}
+        </p>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777; text-align: center;">
+            <a href="{% url 'posts:list' %}" style="color: #3498db; text-decoration: none;">← Back to Posts</a>
+        </p>
+    </div>
+{% endblock %}

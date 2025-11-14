@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}My Tasks{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <h1>My Tasks</h1>
+
+        {% if tasks %}
+            <div style="text-align: left; margin-top: 1.8rem; width: 100%;">
+                {% for task in tasks %}
+                    <div style="padding: 1.2rem 0; border-bottom: 1px solid #f0f0f0; margin-bottom: 1rem;">
+                        <h3 style="color: #2c3e50; margin: 0; font-size: 1.3rem; font-weight: 600;">
+                            {{ task.title }}
+                        </h3>
+                        <p style="color: #555; font-size: 0.98rem; line-height: 1.6; margin: 0.6rem 0;">
+                            {{ task.description|default:"No description" }}
+                        </p>
+                        <p style="font-size: 0.92rem; color: #777; margin-top: 0.5rem;">
+                            <span style="background: #eef7ff; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600;">
+                                {{ task.status }}
+                            </span>
+                            <span style="margin-left: 1rem; font-weight: 500;">
+                                📅 Due: {{ task.deadline|date:"d M Y, H:i" }}
+                            </span>
+                        </p>
+
+                        {% if task.subtasks.exists %}
+                            <div style="margin-top: 1rem; padding-left: 1.4rem;">
+                                <strong style="color: #3498db; font-size: 0.95rem;">Subtasks ({{ task.subtasks.count }}):</strong>
+                                <ul style="margin-top: 0.6rem; padding-left: 1.2rem; list-style-type: none;">
+                                    {% for sub in task.subtasks.all %}
+                                        <li style="font-size: 0.95rem; color: #444; margin: 0.4rem 0; padding-left: 1rem; position: relative;">
+                                            <span style="display: inline-block; width: 6px; height: 6px; background: #3498db; border-radius: 50%; position: absolute; left: -12px; top: 0.6em;"></span>
+                                            <span style="font-weight: 600;">{{ sub.title }}</span>
+                                            <span style="color: #777; font-size: 0.88rem; margin-left: 0.6rem;">
+                                                ({{ sub.status }}, due {{ sub.deadline|date:"d M Y" }})
+                                            </span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="margin: 1.8rem 0; color: #888; font-style: italic; text-align: center;">
+                No tasks found. Add some in the admin panel!
+            </p>
+        {% endif %}
+
+        <p style="margin-top: 2rem; font-size: 0.92rem; color: #777; text-align: center;">
+            <a href="/" style="color: #3498db; text-decoration: none; font-weight: 600;">← Back to Home</a>
+        </p>
+    </div>
+{% endblock %}

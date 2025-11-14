@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <h1>Posts</h1>
+        <p style="margin: 1.25rem 0; color: #555; line-height: 1.7;">
+            Notes, reflections, and code snippets from my learning journey.
+        </p>
+
+        {% if posts %}
+            {% for post in posts %}
+                <article style="text-align: left; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                    <h2 style="color: #2c3e50; margin: 0;">
+                        <a href="{% url 'posts:page' slug=post.slug %}"> {{ post.title }} </a>
+                    </h2>
+                    <p style="font-size: 0.9rem; color: #777; margin: 0.3rem 0;">
+                        {{ post.date|date:"d M Y" }}
+                    </p>
+                    <p style="margin-top: 0.6rem; line-height: 1.6;">{{ post.body }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p style="margin: 1.5rem 0; color: #888; font-style: italic;">No posts yet.</p>
+        {% endif %}
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777;">
+            <a href="/" style="color: #3498db; text-decoration: none;">← Back to Home</a>
+        </p>
+    </div>
+{% endblock %}

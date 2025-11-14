@@ -1,4 +1,13 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+
+
+
+# Deadline validator: ensures the deadline is not in the past
+def validate_deadline(value):
+    if value < timezone.now():
+        raise ValidationError("Deadline cannot be in the past.")
 
 # Task status options
 TASK_STATUS_CHOICES = [
@@ -30,7 +39,7 @@ class Task(models.Model):
     description = models.TextField(blank=True) # Optional task description
     categories = models.ManyToManyField(Category, related_name="tasks") # Task can belong to multiple categories
     status = models.CharField(max_length=20, choices=TASK_STATUS_CHOICES, default='New') # Current task status
-    deadline = models.DateTimeField() # Deadline date and time
+    deadline = models.DateTimeField(validators=[validate_deadline]) # Deadline date and time,  validator added
     created_at = models.DateTimeField(auto_now_add=True) # Creation timestamp
 
     class Meta:
@@ -44,6 +53,7 @@ class Task(models.Model):
         verbose_name = "Task"
         verbose_name_plural = "Tasks"
         db_table = 'task_manager_task'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
@@ -64,7 +74,7 @@ class SubTask(models.Model):
         choices=TASK_STATUS_CHOICES,
         default='New'
     ) # Current subtask status
-    deadline = models.DateTimeField() # Deadline date and time
+    deadline = models.DateTimeField(validators=[validate_deadline]) # Deadline date and time,  validator added
     created_at = models.DateTimeField(auto_now_add=True) # Creation timestamp
 
     def __str__(self):

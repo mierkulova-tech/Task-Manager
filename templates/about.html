@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <h1>About Me</h1>
+
+        <!-- Аватар с GitHub -->
+        <img
+            src="https://github.com/mierkulova-tech.png?size=120"
+            alt="Olena Mierkulova"
+            style="border-radius: 50%; margin: 1.5rem 0; width: 120px; height: 120px; object-fit: cover; border: 2px solid #eee;"
+        >
+
+        <p style="margin: 1.25rem 0; color: #555; line-height: 1.7;">
+             Hi! I'm Olena Mierkulova — a backend developer exploring Django, full-stack systems, and AI integration.<br>
+    This site is where I turn learning into working code.
+        </p>
+
+        <div style="margin-top: 2rem;">
+            <h2 style="color: #777; font-size: 1.2rem; margin: 0 0 1.25rem 0; font-weight: 600;">
+                Backend Developer Student
+            </h2>
+
+            <!-- Контейнер с центрированными кнопками -->
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem;">
+                <!-- GitHub -->
+                <a href="https://github.com/mierkulova-tech" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem;
+                          background: #333; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;
+                          transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.27-.13-.5-.28-.72-.01-.18-.01-.36-.01-.54C3.72 11.3 2.58 10.1 2.58 8.5c0-.85.3-1.63.8-2.25-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.5 0.62.8 1.4.8 2.25 0 1.6 1.14 2.8 2.81 3.43-.29.08-.58.13-.88.16C10.52 14.33 9 14.67 8 14.67c-.99 0-1.97-.33-2.82-.95.14-.28.26-.58.35-.9.01-.22.01-.44.01-.66 0-.47-.15-.93-.44-1.3C6.3 11.73 7.1 12 8 12s1.7-.27 2.44-.76c.29.43.44.89.44 1.36 0 .22 0 .44-.01.66.09.32.21.62.35.9-1.05.7-2.4 1.05-3.84 1.05C4.58 15.3 2.58 13.53 2.58 11.3c0-.57.06-1.13.17-1.66C1.7 9.67 1 10.27 1 11.1c0 .65.27 1.24.7 1.64-.13.1-.27.19-.41.28-.52.36-1.1.58-1.7.58-.36 0-.71-.04-1.05-.11.61-.7 1.06-1.56 1.27-2.47-.06-.15-.13-.3-.21-.45C.3 9.26.2 9.1.2 8.94c0-.34.14-.65.36-.88.22-.23.52-.35.84-.35.4 0 .77.15 1.05.4.28.25.45.58.49.95.04.37.06.74.06 1.11 0 .66-.06 1.3-.18 1.92-.08.4-.2 0-.2.06 0 0-.01.06-.01.06"/>
+                    </svg>
+                    GitHub
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/o-mierkulova/" target="_blank" rel="noopener noreferrer"
+                   style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem;
+                          background: #0077b5; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;
+                          transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.259 0-.709-.521-1.26-1.358-1.26-.84 0-1.359.551-1.359 1.26 0 .705.521 1.259 1.359 1.259zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <!-- Опционально: блок про проект -->
+        <!--
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #666; line-height: 1.6;">
+            This site was built with Django and Bootstrap as part of my learning journey.<br>
+            You can explore the source code on <a href="https://github.com/mierkulova-tech" style="color: #3498db; text-decoration: none;">GitHub</a>.
+        </p>
+        -->
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777;">
+            <a href="/" style="color: #3498db; text-decoration: none;">← Back to Home</a>
+        </p>
+    </div>
+{% endblock %}
