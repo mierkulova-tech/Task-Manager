@@ -82,27 +82,27 @@ bash
 4 # macOS / Linux:
 5 source .venv/bin/activate
 
-**Install dependencies**
+3. **Install dependencies**
 bash
 1 pip install -r requirements.txt
 
-**Apply migrations**
+4. **Apply migrations**
 bash
 1 python manage.py migrate
 
-**Create superuser (optional but recommended)**
+5. **Create superuser (optional but recommended)**
 bash
 1 python manage.py createsuperuser
 
-**Load sample data (optional)**
+6. **Load sample data (optional)**
 bash
 1 python manage.py loaddata tasks_fixture.json
 
-**Run the server**
+7. **Run the server**
 bash
 1 python manage.py runserver
 
-**Explore**
+8. **Explore**
 Visit: http://127.0.0.1:8000
 Admin panel: http://127.0.0.1:8000/admin
 
