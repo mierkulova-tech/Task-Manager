@@ -75,50 +75,51 @@ This project combines **backend logic** (tasks, subtasks, categories) with a **m
    cd Task-Manager
 
 2. **Create and activate virtual environment**
-bash
-1 python -m venv .venv
-2 # Windows:
-3 .\.venv\Scripts\activate
-4 # macOS / Linux:
-5 source .venv/bin/activate
+   ```bash
+   python -m venv .venv
+   # Windows:
+   .\.venv\Scripts\activate
+   # macOS / Linux:
+   source .venv/bin/activate
 
 3. **Install dependencies**
-bash
-1 pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 4. **Apply migrations**
-bash
-1 python manage.py migrate
+   ```bash   
+   python manage.py migrate
 
 5. **Create superuser (optional but recommended)**
-bash
-1 python manage.py createsuperuser
+   ```bash
+   python manage.py createsuperuser
 
 6. **Load sample data (optional)**
-bash
-1 python manage.py loaddata tasks_fixture.json
+   ```bash
+   python manage.py loaddata tasks_fixture.json
 
 7. **Run the server**
-bash
-1 python manage.py runserver
+   ```bash
+   python manage.py runserver
 
 8. **Explore**
-Visit: http://127.0.0.1:8000
-Admin panel: http://127.0.0.1:8000/admin
+   Visit: http://127.0.0.1:8000
+   Admin panel: http://127.0.0.1:8000/admin
 
-💻 ***Screenshots***
-(Consider adding 2–3 screenshots later: homepage, task list, post detail, about page)
+
+💻 Screenshots
+   (Consider adding 2–3 screenshots later: homepage, task list, post detail, about page)
 Example caption:
-"Clean UI with consistent layout and responsive design" 
+   "Clean UI with consistent layout and responsive design" 
 
-📚 ***Purpose***
-**This project is part of my backend development and full-stack learning journey, demonstrating:**
+📚 Purpose
+   This project is part of my backend development and full-stack learning journey, demonstrating:
 
 Django models, views, and templates
 REST-like URL design
 Semantic HTML & modern CSS (no frameworks)
 Professional GitHub presentation
 
-📄 **License**
+📄 License
 This project is for educational purposes only.
 Feel free to use the code as a reference or learning resource.
