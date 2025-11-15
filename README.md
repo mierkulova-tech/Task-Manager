@@ -1,93 +1,124 @@
-# Task Manager
+# 📋 Task Manager — Educational Django Project
 
-A simple task management project built with **Django**. This project allows users to create tasks, sub-tasks, and categorize them. All data can be managed via the Django admin panel or loaded from a JSON fixture.
+A clean, responsive task management and learning journal built with **Django**.  
+This project combines **backend logic** (tasks, subtasks, categories) with a **modern frontend UI**, serving as a portfolio piece for backend development and full-stack learning.
 
-## Features
+> ✨ Live features:  
+> - Task & subtask management  
+> - Learning journal (blog-style posts)  
+> - Styled UI with consistent layout  
+> - Fully responsive design  
 
-* Create **Tasks** with title, description, status, categories, and deadlines.
-* Create **SubTasks** linked to parent tasks.
-* Categorize tasks with **Category** model (many-to-many relation).
-* Admin panel support for easy management.
-* Load initial data from a **JSON fixture**.
-* Follows **PEP8** coding standards and includes English comments.
+---
 
-## Models
+## 🌟 Features
 
-### Task
+### 📌 Task Management
+- Create **Tasks** with title, description, status, categories, and deadlines  
+- Add **Subtasks** linked to parent tasks  
+- Organize tasks using **Categories** (many-to-many relation)  
+- Manage all data via **Django Admin**
 
-* title (unique per date)
-* description
-* categories (many-to-many)
-* status: New, In progress, Pending, Blocked, Done
-* deadline
-* created_at
+### 📝 Learning Journal
+- Write and view **educational posts** (notes, reflections, code snippets)  
+- Clean, readable layout with proper typography
 
-### SubTask
+### 🎨 Frontend
+- Modern, responsive design with **flexbox layout**  
+- Consistent styling across all pages (`/`, `/tasks/`, `/posts/`, `/about/`)  
+- Sticky footer that **never jumps**  
+- GitHub & LinkedIn links on the About page  
+- Light, accessible color scheme
 
-* title
-* description
-* task (foreign key to Task)
-* status
-* deadline
-* created_at
+### 🛠️ Developer Experience
+- Follows **PEP8** coding standards  
+- English comments and clean structure  
+- Load initial data via JSON fixture (optional)  
+- Ready for deployment
 
-### Category
+---
 
-* name (unique)
+## 📦 Models
 
-## Installation
+### `Task`
+- `title` (unique per deadline)
+- `description`
+- `categories` (many-to-many with `Category`)
+- `status`: `New`, `In progress`, `Pending`, `Blocked`, `Done`
+- `deadline`
+- `created_at`
 
-1. Clone the repository:
+### `SubTask`
+- `title`
+- `description`
+- `task` (foreign key to `Task`)
+- `status`
+- `deadline`
+- `created_at`
 
-```bash
-git clone https://github.com/mierkulova-tech/Task-Manager.git
-cd Task-Manager
-```
+### `Category`
+- `name` (unique)
 
-2. Create a virtual environment and activate it:
+### `Post` (for learning journal)
+- `title`
+- `slug` (for clean URLs)
+- `body`
+- `date`
 
-```bash
-python -m venv .venv
-.\.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # Mac/Linux
-```
+---
 
-3. Install dependencies:
+## 🚀 Installation
 
-```bash
-pip install -r requirements.txt
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mierkulova-tech/Task-Manager.git
+   cd Task-Manager
 
-4. Apply migrations:
+2. **Create and activate virtual environment**
+bash
+1 python -m venv .venv
+2 # Windows:
+3 .\.venv\Scripts\activate
+4 # macOS / Linux:
+5 source .venv/bin/activate
 
-```bash
-python manage.py migrate
-```
+**Install dependencies**
+bash
+1 pip install -r requirements.txt
 
-5. Create a superuser:
+**Apply migrations**
+bash
+1 python manage.py migrate
 
-```bash
-python manage.py createsuperuser
-```
+**Create superuser (optional but recommended)**
+bash
+1 python manage.py createsuperuser
 
-6. Load initial data (optional):
+**Load sample data (optional)**
+bash
+1 python manage.py loaddata tasks_fixture.json
 
-```bash
-python manage.py loaddata tasks_fixture.json
-```
+**Run the server**
+bash
+1 python manage.py runserver
 
-7. Run the server:
+**Explore**
+Visit: http://127.0.0.1:8000
+Admin panel: http://127.0.0.1:8000/admin
 
-```bash
-python manage.py runserver
-```
+💻 ***Screenshots***
+(Consider adding 2–3 screenshots later: homepage, task list, post detail, about page)
+Example caption:
+"Clean UI with consistent layout and responsive design" 
 
-Access the admin panel at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+📚 ***Purpose***
+**This project is part of my backend development and full-stack learning journey, demonstrating:**
 
-## Screenshots
+Django models, views, and templates
+REST-like URL design
+Semantic HTML & modern CSS (no frameworks)
+Professional GitHub presentation
 
-*(Add screenshots showing Tasks, SubTasks, and Categories in the admin panel here)*
-
-## License
-
-This project is for educational purposes.
+📄 **License**
+This project is for educational purposes only.
+Feel free to use the code as a reference or learning resource.
