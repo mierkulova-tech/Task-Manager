@@ -6,7 +6,13 @@ class Post(models.Model):
     body = models.TextField()
     slug = models.SlugField()
     date = models.DateTimeField(auto_now_add=True)
+    banner = models.ImageField(default='fallback.jpg', blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_banner_url(self):
+        if self.banner and hasattr(self.banner, 'url'):
+            return self.banner.url
+        return f"/media/{self.banner.name}"
 

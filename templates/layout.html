@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Task Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
     <style>
         html, body {
             height: 100%;
@@ -18,22 +22,30 @@
             margin-top: auto;
             width: 100%;
         }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Task Manager{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
 </head>
 <body>
 
     <header>
-        <nav>
+        <h1 class="sr-only">Task Manager</h1>
+        <nav aria-label="Main navigation">
             <ul class="menu">
-                <li><a href="/"><span>😎</span> Home</a></li>
-                <li><a href="/tasks/"><span>🤓</span> Tasks</a></li>
-                <li><a href="/posts/"><span>🎉</span> Posts</a></li>
-                <li><a href="/about/"><span>👩‍💻</span> About</a></li>
+                <li><a href="/"><span role="img" aria-label="Home">😎</span> Home</a></li>
+                <li><a href="/tasks/"><span role="img" aria-label="Tasks">🤓</span> Tasks</a></li>
+                <li><a href="/posts/"><span role="img" aria-label="Posts">🎉</span> Posts</a></li>
+                <li><a href="/about/"><span role="img" aria-label="About">👩‍💻</span> About</a></li>
+                <li><a href="/users/"><span role="img" aria-label="User Registration">🚀</span> Users</a></li>
             </ul>
         </nav>
     </header>

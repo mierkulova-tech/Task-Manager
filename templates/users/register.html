@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Register a New User
+{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <h1>Register a New User</h1>
+        <form class="form-with-validation" action="/users/register/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            {{ form.errors }}
+            <button class="form-submit">Submit</button>
+        </form>    
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777; text-align: center;">
+            <a href="{% url 'posts:list' %}" style="color: #3498db; text-decoration: none;">← Back to Posts</a>
+        </p>
+    </div>
+{% endblock %}

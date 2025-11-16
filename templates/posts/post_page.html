@@ -4,6 +4,11 @@
 
 {% block content %}
     <div class="post-container">
+        <img
+                class="banner"
+                src="/media/{{ post.banner.name }}"
+                alt="{{ post.title }}"
+        />
         <h1>{{ post.title }}</h1>
         <p style="font-size: 0.95rem; color: #777; margin-top: 0.5rem;">
             {{ post.date|date:"d M Y" }}
