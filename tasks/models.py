@@ -9,15 +9,6 @@ def validate_deadline(value):
     if value < timezone.now():
         raise ValidationError("Deadline cannot be in the past.")
 
-# Task status options
-TASK_STATUS_CHOICES = [
-    ('New', 'New'),
-    ('In progress', 'In progress'),
-    ('Pending', 'Pending'),
-    ('Blocked', 'Blocked'),
-    ('Done', 'Done'),
-]
-
 class Category(models.Model):
     """Model representing a category for tasks."""
 
@@ -35,10 +26,19 @@ class Category(models.Model):
 class Task(models.Model):
     """Model representing a task."""
 
+    # Task status options
+    STATUS_CHOICES = [
+        ('New', 'New'),
+        ('In progress', 'In progress'),
+        ('Pending', 'Pending'),
+        ('Blocked', 'Blocked'),
+        ('Done', 'Done'),
+    ]
+
     title = models.CharField(max_length=200, unique=True)  # Task title, unique
     description = models.TextField(blank=True) # Optional task description
     categories = models.ManyToManyField(Category, related_name="tasks") # Task can belong to multiple categories
-    status = models.CharField(max_length=20, choices=TASK_STATUS_CHOICES, default='New') # Current task status
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='New') # Current task status
     deadline = models.DateTimeField(validators=[validate_deadline]) # Deadline date and time,  validator added
     created_at = models.DateTimeField(auto_now_add=True) # Creation timestamp
 
@@ -62,17 +62,29 @@ class Task(models.Model):
 class SubTask(models.Model):
     """Model representing a subtask of a parent task."""
 
+    # Subtask status options
+    STATUS_CHOICES = [
+        ('New', 'New'),
+        ('In progress', 'In progress'),
+        ('Pending', 'Pending'),
+        ('Blocked', 'Blocked'),
+        ('Done', 'Done'),
+    ]
+
+
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True)
     task = models.ForeignKey(
         Task,
         on_delete=models.CASCADE,
         related_name="subtasks"
+
     ) # Linked parent task
     status = models.CharField(
         max_length=20,
-        choices=TASK_STATUS_CHOICES,
+        choices=STATUS_CHOICES,
         default='New'
+
     ) # Current subtask status
     deadline = models.DateTimeField(validators=[validate_deadline]) # Deadline date and time,  validator added
     created_at = models.DateTimeField(auto_now_add=True) # Creation timestamp

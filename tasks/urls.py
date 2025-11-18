@@ -1,13 +1,13 @@
 from django.urls import path
 from . import views
 
+
+
 urlpatterns = [
-    # HTML views
     path('', views.tasks_list, name='tasks_list'),
 
-   # API endpoints
-    path('api/tasks/create/', views.api_create_task, name='api_create_task'),
-    path('api/tasks/', views.api_task_list, name='api_task_list'),
-    path('api/tasks/<int:task_id>/', views.api_task_detail, name='api_task_detail'),
-    path('api/tasks/stats/', views.api_task_stats, name='api_task_stats'),
+    path('create_task', views.create_task, name='create_task'),
+    path('list/', views.task_list, name='list_tasks'),
+    path('<int:task_id>/', views.task_detail, name='get_task'),
+    path('stats/', views.task_stats, name='task_stats'),
 ]
