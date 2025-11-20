@@ -1,4 +1,4 @@
-# python queries.py
+
 
 import os
 import django
@@ -15,7 +15,7 @@ from tasks.models import Task, SubTask
 # Create a Task
 task = Task.objects.create(
     title="Prepare presentation 1",
-    description="Prepare materials and slides for the presentation 1",
+    description="Prepare materials and slides for the presentation",
     status="New",
     deadline=timezone.now() + timedelta(days=3)
 )
@@ -24,7 +24,7 @@ print(f"Task '{task.title}' is born! Deadline at {task.deadline}")
 # Create SubTasks for the Task
 subtask1 = SubTask.objects.create(
     title="Gather information",
-    description="Find necessary information for the presentation 1",
+    description="Find necessary information for the presentation",
     status="New",
     task=task, # Link to the parent task
     deadline=timezone.now() + timedelta(days=2)  # Deadline in 2 days
@@ -54,7 +54,7 @@ overdue_done_subtasks = SubTask.objects.filter(
 print("SubTasks done but overdue.")
 
 # Change status of "Prepare presentation" to "In progress"
-task_to_update = Task.objects.get(title="Prepare presentation 1")
+task_to_update = Task.objects.get(title="Prepare presentation")
 task_to_update.status = "In progress"
 task_to_update.save()
 
@@ -69,5 +69,5 @@ subtask_to_update.description = "Create and format presentation slides"
 subtask_to_update.save()
 
 # Delete "Prepare presentation" and all its SubTasks
-task_to_delete = Task.objects.get(title="Prepare presentation 1")
+task_to_delete = Task.objects.get(title="Prepare presentation")
 task_to_delete.delete()

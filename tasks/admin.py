@@ -1,12 +1,11 @@
 from django.contrib import admin
 from .models import Task, SubTask, Category
 
-
+@admin.action(description="Mark selected subtasks as Done")
 def mark_subtasks_as_done(modeladmin, request, queryset):
     """Mark selected subtasks as Done."""
     updated_count = queryset.update(status='Done')
     modeladmin.message_user(request, f"{updated_count} subtasks marked as Done.")
-mark_subtasks_as_done.short_description = "Mark selected subtasks as Done"
 
 
 class SubTaskInline(admin.TabularInline):
@@ -32,7 +31,8 @@ class TaskAdmin(admin.ModelAdmin):
     inlines = [SubTaskInline] # add inlines
 
     def short_title(self, obj):
-        return (obj.title[:10] + '...') if len(obj.title) > 10 else obj.title
+        title = obj.title[:10] + '...' if len(obj.title) > 10 else obj.title
+        return f"{title} (ID: {obj.id})"
     short_title.short_description = "Title"
 
 
