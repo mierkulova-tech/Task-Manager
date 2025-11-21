@@ -72,7 +72,7 @@ class SubTask(models.Model):
     ]
 
 
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     task = models.ForeignKey(
         Task,

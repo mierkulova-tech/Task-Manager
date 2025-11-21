@@ -1,25 +1,27 @@
 from django.contrib import admin
+
 from .models import Task, SubTask, Category
 
 @admin.action(description="Mark selected subtasks as Done")
 def mark_subtasks_as_done(modeladmin, request, queryset):
     """Mark selected subtasks as Done."""
-    updated_count = queryset.update(status='Done')
+    to_update = queryset.exclude(status='Done')
+    updated_count = to_update.update(status='Done')
     modeladmin.message_user(request, f"{updated_count} subtasks marked as Done.")
 
 
 class SubTaskInline(admin.TabularInline):
     model = SubTask
     extra = 1
-    fields = ('title', 'description', 'status', 'deadline')
+    fields = ('title', 'description','status', 'deadline')
     show_change_link = True  # allow editing from inline
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """Admin configuration for Category model."""
 
-    list_display = ['name'] # Show category name in admin list
-    search_fields = ['name'] # Enable search by name
+    list_display = ['name',] # Show category name in admin list
+    search_fields = ['name',] # Enable search by name
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
