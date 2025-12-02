@@ -1,18 +1,23 @@
 from django.urls import path
 from . import views
-from .api import views_api
+from .api import api_views
 
-
-
-#API HTML
+# HTML-страницы
 urlpatterns = [
     path('', views.tasks_list, name='tasks_list'),
 
+    # API subtask (class)
+    path('api/subtasks/',
+         api_views.SubTaskListCreateView.as_view(),
+         name='api_subtask_list_create'),
 
-#API URL
+    path('api/subtasks/<int:pk>/',
+         api_views.SubTaskDetailUpdateDeleteView.as_view(),
+         name='api_subtask_detail'),
 
-    path('create_task', views_api.api_create_task, name='create_task'),
-    path('list/', views_api.api_task_list, name='list_tasks'),
-    path('<int:task_id>/', views_api.api_task_detail, name='get_task'),
-    path('stats/', views_api.api_task_stats, name='task_stats'),
+    # API (def)
+    path('api/create_task/', api_views.create_task, name='create_task'),
+    path('api/list/', api_views.task_list, name='list_tasks'),
+    path('api/<int:task_id>/', api_views.task_detail, name='get_task'),
+    path('api/stats/', api_views.task_stats, name='task_stats'),
 ]
