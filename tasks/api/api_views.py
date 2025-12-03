@@ -151,11 +151,13 @@ class SubTaskListCreateView(APIView):
                 )
             queryset = queryset.filter(status=status_param)
 
-
         paginator = SubTaskPagination()
         paginated_queryset = paginator.paginate_queryset(queryset, request)
+
         serializer = SubTaskSerializer(paginated_queryset, many=True)
+
         return paginator.get_paginated_response(serializer.data)
+
     def post(self, request):
         serializer = SubTaskCreateSerializer(data=request.data)
         if serializer.is_valid():

@@ -1,23 +1,20 @@
+# tasks/urls.py
 from django.urls import path
-from . import views
-from .api import api_views
+from . import views  # ← импортируем из нового views.py
+from .api import api_views  # оставляем stats
 
-# HTML-страницы
 urlpatterns = [
+    # HTML-страницы (оставляем как есть)
     path('', views.tasks_list, name='tasks_list'),
 
-    # API subtask (class)
-    path('api/subtasks/',
-         api_views.SubTaskListCreateView.as_view(),
-         name='api_subtask_list_create'),
+    # API — задачи (новые Generic Views)
+    path('api/tasks/', views.TaskListCreateView.as_view(), name='task-list-create'),
+    path('api/tasks/<int:pk>/', views.TaskDetailView.as_view(), name='task-detail'),
 
-    path('api/subtasks/<int:pk>/',
-         api_views.SubTaskDetailUpdateDeleteView.as_view(),
-         name='api_subtask_detail'),
+    # API — подзадачи (новые Generic Views)
+    path('api/subtasks/', views.SubTaskListCreateView.as_view(), name='subtask-list-create'),
+    path('api/subtasks/<int:pk>/', views.SubTaskDetailView.as_view(), name='subtask-detail'),
 
-    # API (def)
-    path('api/create_task/', api_views.create_task, name='create_task'),
-    path('api/list/', api_views.task_list, name='list_tasks'),
-    path('api/<int:task_id>/', api_views.task_detail, name='get_task'),
+    # Статистика — оставляем как есть
     path('api/stats/', api_views.task_stats, name='task_stats'),
 ]
