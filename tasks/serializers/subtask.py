@@ -13,3 +13,5 @@ class SubTaskSerializer(serializers.ModelSerializer):
         model = SubTask
         fields = ['id', 'title', 'description', 'status', 'deadline', 'created_at']
         read_only_fields = ['id', 'created_at']
+     
+
