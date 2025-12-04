@@ -1,20 +1,27 @@
-# tasks/urls.py
-from django.urls import path
-from . import views  # ← импортируем из нового views.py
-from .api import api_views  # оставляем stats
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import views
+from .api import api_views
+
+# DRF router CategoryViewSet
+router = DefaultRouter()
+router.register(r'categories', views.CategoryViewSet, basename='category')
 
 urlpatterns = [
-    # HTML-страницы (оставляем как есть)
+    # HTML
     path('', views.tasks_list, name='tasks_list'),
 
-    # API — задачи (новые Generic Views)
+    # API TASKS
     path('api/tasks/', views.TaskListCreateView.as_view(), name='task-list-create'),
     path('api/tasks/<int:pk>/', views.TaskDetailView.as_view(), name='task-detail'),
 
-    # API — подзадачи (новые Generic Views)
+    # API SUBTASKS
     path('api/subtasks/', views.SubTaskListCreateView.as_view(), name='subtask-list-create'),
     path('api/subtasks/<int:pk>/', views.SubTaskDetailView.as_view(), name='subtask-detail'),
 
-    # Статистика — оставляем как есть
+    # API STATS
     path('api/stats/', api_views.task_stats, name='task_stats'),
+
+    # API router
+    path('api/', include(router.urls)),
 ]

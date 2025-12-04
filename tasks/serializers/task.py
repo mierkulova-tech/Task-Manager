@@ -2,7 +2,7 @@ from django.utils import timezone
 from rest_framework import serializers
 
 from .subtask import SubTaskSerializer
-from ..models import Task, SubTask, Category
+from ..models import Task
 
 
 class TaskDetailSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class TaskDetailSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at']
         fields = [
             'id', 'title', 'description', 'status', 'deadline',
-            'created_at', 'subtasks', 'subtasks_count',
+            'created_at', 'updated_at', 'subtasks', 'subtasks_count',
             'completed_subtasks_count'
         ]
 
