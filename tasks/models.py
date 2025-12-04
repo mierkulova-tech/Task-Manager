@@ -9,10 +9,28 @@ def validate_deadline(value):
     if value < timezone.now():
         raise ValidationError("Deadline cannot be in the past.")
 
+class CategoryQuerySet(models.QuerySet):
+    def not_deleted(self):
+        return self.filter(is_deleted=False)
+
+class CategoryManager(models.Manager):
+    def get_queryset(self):
+        return CategoryQuerySet(self.model).not_deleted()
+
 class Category(models.Model):
     """Model representing a category for tasks."""
 
     name = models.CharField(max_length=100, unique=True) # Category name, must be unique
+    description = models.TextField(blank=True)
+    is_deleted = models.BooleanField(default=False) # Soft delete flag
+    deleted_at = models.DateTimeField(null=True, blank=True) # Timestamp of soft delete
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    objects = CategoryManager()
+    all_objects = models.Manager()
 
     def __str__(self):
         return self.name
@@ -21,7 +39,15 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
         db_table = 'task_manager_category'
+        ordering = ['name']
 
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save(update_fields=['is_deleted', 'deleted_at'])
+
+    def hard_delete(self, using=None, keep_parents=False):
+        super().delete(using=using, keep_parents=keep_parents)
 
 class Task(models.Model):
     """Model representing a task."""
@@ -41,6 +67,7 @@ class Task(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='New') # Current task status
     deadline = models.DateTimeField(validators=[validate_deadline]) # Deadline date and time,  validator added
     created_at = models.DateTimeField(auto_now_add=True) # Creation timestamp
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         # Enforce uniqueness by combination of title and deadline

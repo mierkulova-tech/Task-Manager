@@ -42,3 +42,17 @@ class CategoryCreateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         return super().update(instance, validated_data)
+
+class CategorySerializer(serializers.ModelSerializer):
+    tasks_count = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'description', 'is_deleted',
+                  'deleted_at', 'created_at', 'updated_at', 'tasks_count']
+
+        read_only_fields = ['is_deleted', 'deleted_at',
+                            'created_at', 'updated_at', 'tasks_count']
+
+    def get_tasks_count(self, obj):
+        return obj.tasks.count()

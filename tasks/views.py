@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from rest_framework import generics, filters
-from .models import Task, SubTask
+from rest_framework import generics, filters, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+from .models import Task, SubTask, Category
 from .serializers import TaskDetailSerializer, SubTaskSerializer, SubTaskCreateSerializer
+from .serializers.category import CategorySerializer
+
 
 def homepage(request):
     return render(request, 'home.html')
@@ -45,3 +50,21 @@ class SubTaskListCreateView(generics.ListCreateAPIView):
 class SubTaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = SubTask.objects.select_related('task')
     serializer_class = SubTaskSerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+    @action(detail=True, methods=['get'])
+    def count_tasks(self, request, pk=None):
+        category = self.get_object()
+        count = category.tasks.count()
+
+        return Response({
+            'category': category.name,
+            'category_id': category.id,
+            'tasks_count': count
+        })
