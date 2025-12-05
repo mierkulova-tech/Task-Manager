@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .models import Task, SubTask, Category
+from .pagination import SecureCursorPagination
 from .serializers import TaskDetailSerializer, SubTaskSerializer, SubTaskCreateSerializer
 from .serializers.category import CategorySerializer
 
@@ -54,6 +55,7 @@ class SubTaskDetailView(generics.RetrieveUpdateDestroyAPIView):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    pagination_class = SecureCursorPagination
 
     def perform_destroy(self, instance):
         instance.delete()
